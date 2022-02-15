@@ -1,6 +1,7 @@
 from ec import EC
+from modarith import FieldNum
 
-class Point:
+class Point():
 
     def __init__(self, x, y):
         self.x = x
@@ -37,6 +38,6 @@ class Point:
             s = (y_p - y_q) / (x_p - x_q)
 
         x_r = pow(s,2) - x_p - x_q
-        y_r = -y_p + s*(x_p - x_r)
+        y_r = s*(x_p - x_r) - y_p
 
         return Point(x_r, y_r)

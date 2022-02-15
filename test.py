@@ -1,11 +1,21 @@
 from point import Point
 from ec import EC
+from modarith import FieldNum
 
-ec = EC()
+p = FieldNum.P
 
-p1 = Point(1, ec.genY(1))
-p2 = Point(0, ec.genY(0))
+print("addition:")
+for i in range(0, p):
+    for j in range(0, p):
+        a = FieldNum(i)
+        b = FieldNum(j)
+        print(a+b, end = " ")
+    print()
 
-print(p1)
-print(p2)
-print(p1+p2)
+print("multiplication:")
+for i in range(0, p):
+    for j in range(0, p):
+        a = FieldNum(i)
+        b = FieldNum(j)
+        print(a*b, end = " ")
+    print()

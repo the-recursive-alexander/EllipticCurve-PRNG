@@ -2,8 +2,8 @@ from math import sqrt
 
 # equation of the form: y^2 = x^3 + ax + b
 
-A = 1 # the global parameter A
-B = 3 # the global parameter B
+A = 3 # the global parameter A
+B = 4 # the global parameter B
 
 class EC(object):
 
