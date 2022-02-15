@@ -1,12 +1,11 @@
-from ec import EC
+from ec import curEC
 from modarith import FieldNum
 
 class Point():
 
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.ec = EC() 
+        self.x = FieldNum(x)
+        self.y = FieldNum(y)
     
     def __str__(self):
         return "({}, {})".format(self.x, self.y)
@@ -27,17 +26,44 @@ class Point():
     s = (y_p - y_q) / (x_p - x_q), if P is not equal to Q
     s = (3x_p^2 + a) / (2y_p) if P = Q
 
+    in cryptography, these equations are done over a finite 
+    field, so we mod each one by some large prime p
+
     for a PRNG, we only use the case when P = Q (?)
     """
     def __add__(self, point2):
         (x_p, y_p, x_q, y_q) = (self.x, self.y, point2.x, point2.y)
 
         if(x_p == x_q and y_p == y_q):
-            s = (3*pow(x_p,2) + self.ec.a) / (2*y_p)
+            s = (FieldNum(3)*(x_p**2) + FieldNum(curEC.a)) / (FieldNum(2)*y_p)
         else:
-            s = (y_p - y_q) / (x_p - x_q)
+            try:
+                s = (y_p - y_q) / (x_p - x_q)
+            except ZeroDivisionError:
+                return Point('-', '-')
 
-        x_r = pow(s,2) - x_p - x_q
+        x_r = s**2 - x_p - x_q
         y_r = s*(x_p - x_r) - y_p
+        
+        return Point(x_r.val, y_r.val)
+    
+    def __mul__(self, a):
+        P = self
+        for i in range(1, a):
+            P = self.__add__(P)
+        return P
 
-        return Point(x_r, y_r)
+        
+"""
+class Point_ID(Point):
+
+    def __init__(self):
+        self.x = '-'
+        self.y = '-'
+
+    def __str__(self):
+        return "(-, -)"
+
+    def __add__(self, point2):
+        return point2
+"""
