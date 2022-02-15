@@ -19,3 +19,10 @@ for i in range(0, p):
         b = FieldNum(j)
         print(a*b, end = " ")
     print()
+
+print("powers:")
+a = FieldNum(3)
+for i in range(0, p):
+    print(a**i)
+
+print(a**6)
