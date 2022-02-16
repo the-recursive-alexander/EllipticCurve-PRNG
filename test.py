@@ -46,6 +46,11 @@ class Test(unittest.TestCase):
         a = Point(0, 3)
         c = a + a
         self.assertEqual(str(c), "(2, 3)")
+        FieldNum.P = 17
+        b = Point(14, 0)
+        d = b + b
+        self.assertEqual(str(d), "(-, -)")
+        FieldNum.P = 7
     
     def test_point_addition(self):
         a = Point(2, 4)
@@ -66,6 +71,8 @@ class Test(unittest.TestCase):
         self.assertEqual(str(d), str(b))
         a2 = PointID()
         self.assertEqual(a, a2)
+        c = Point(0, 4)
+        self.assertEqual(str(b+c), "(-, -)")
 
 
     def test_scalar_multiplication_of_points(self):
@@ -85,6 +92,7 @@ class Test(unittest.TestCase):
                 print(points[i] + points[j], end=" ")
             print()
     """
+    
 
 if __name__ == '__main__':
     FieldNum.P = 7

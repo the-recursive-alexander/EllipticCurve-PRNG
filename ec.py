@@ -1,11 +1,12 @@
-from math import sqrt
+from modarith import FieldNum
+from point import *
 
 # equation of the form: y^2 = x^3 + ax + b
-# to use the global EC with the parameters below import curEC
+
 A = 3
 B = 2
 
-class __EC__(object):
+class EC(object):
 
     def __init__(self, a, b):
         self.a = a
@@ -14,14 +15,24 @@ class __EC__(object):
     def __str__(self):
         return "y^2 = x^3 + {}x + {}".format(self.a, self.b)
 
-    # TODO: broken, does not interact with fields
-    def genY(self, x, pos = True):
-        a = self.a
-        b = self.b
+    def __repr__(self):
+        return "y^2 = x^3 + {}x + {}".format(self.a, self.b)
 
-        if pos:
-            return sqrt(pow(x,3) + a*x + b)
-        else:
-            return -sqrt(pow(x,3) + a*x + b)
+    """
+    returns a list of Point objects
+    """
+    def points(self):
+        a = FieldNum(self.a)
+        b = FieldNum(self.b)
 
-curEC = __EC__(A, B)
+        p = FieldNum.P
+        point_list = [PointID()]
+        for x in range(0, p):
+            y = (FieldNum(x**3)+a*FieldNum(x)+b).sqrt()
+            if y:
+                for i in range(0, len(y)):
+                    point_list.append(Point(x, y[i].val))
+            #print(x, y)
+        return point_list
+
+curEC = EC(A, B)

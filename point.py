@@ -1,4 +1,4 @@
-from ec import curEC
+import ec
 from modarith import FieldNum
 
 class Point():
@@ -8,6 +8,9 @@ class Point():
         self.y = FieldNum(y)
     
     def __str__(self):
+        return "({}, {})".format(self.x, self.y)
+
+    def __repr__(self):
         return "({}, {})".format(self.x, self.y)
 
     """
@@ -33,23 +36,25 @@ class Point():
     """
     def __add__(self, point2):
         (x_p, y_p, x_q, y_q) = (self.x, self.y, point2.x, point2.y)
-
+        
         if(point2 is PointID()):
             return self
-        else:
-            if(x_p == x_q and y_p == y_q):
-                s = (FieldNum(3)*(x_p**2) + FieldNum(curEC.a)) / (FieldNum(2)*y_p)
+        elif(x_p.val == x_q.val and y_p.val == y_q.val):
+            if(y_p.val == 0):
+                return PointID()
             else:
-                try:
-                    s = (y_p - y_q) / (x_p - x_q)
-                except:
-                    return PointID()
-
+                s = (FieldNum(3)*(x_p**2) + FieldNum(ec.curEC.a)) / (FieldNum(2)*y_p)
+                x_r = s**2 - x_p - x_q
+                y_r = s*(x_p - x_r) - y_p
+        elif(x_p.val == x_q.val):
+            return PointID()
+        else:
+            s = (y_p - y_q) / (x_p - x_q)
             x_r = s**2 - x_p - x_q
             y_r = s*(x_p - x_r) - y_p
-            
-            return Point(x_r.val, y_r.val)
+        return Point(x_r.val, y_r.val)
     
+    #a*P
     def __mul__(self, a):
         P = self
         for i in range(1, a):
@@ -67,6 +72,9 @@ class PointID(Point, object):
         self.y = '-'
     
     def __str__(self):
+        return "(-, -)"
+    
+    def __repr__(self):
         return "(-, -)"
 
     def __add__(self, other):
