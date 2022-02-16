@@ -3,7 +3,7 @@ from ec import curEC
 from modarith import FieldNum
 
 myEC = curEC
-FieldNum.P = 17
+FieldNum.P = 29
 
 def generateGroupTable():
     pointList = myEC.points()
