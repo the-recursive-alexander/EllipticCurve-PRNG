@@ -1,4 +1,4 @@
-from point import Point
+from point import *
 from ec import curEC
 from modarith import FieldNum
 import unittest
@@ -53,8 +53,19 @@ class Test(unittest.TestCase):
         c = a + b
         self.assertEqual(str(c), "(5, 3)")
 
-    #def test_addition_with_identity(self):
-    #    self.assertTrue(False)
+    def test_addition_with_identity(self):
+        a = PointID()
+        b = Point(0, 3)
+        self.assertEqual(str(a), "(-, -)")
+        self.assertEqual(str(a+a), "(-, -)")
+        self.assertEqual(str(a+b), str(b))
+        self.assertEqual(str(b+a), str(b))
+        c = a + a + a + a
+        d = a + b + a + a
+        self.assertEqual(str(c), str(a))
+        self.assertEqual(str(d), str(b))
+        a2 = PointID()
+        self.assertEqual(a, a2)
 
 
     def test_scalar_multiplication_of_points(self):

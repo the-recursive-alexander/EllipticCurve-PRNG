@@ -34,18 +34,21 @@ class Point():
     def __add__(self, point2):
         (x_p, y_p, x_q, y_q) = (self.x, self.y, point2.x, point2.y)
 
-        if(x_p == x_q and y_p == y_q):
-            s = (FieldNum(3)*(x_p**2) + FieldNum(curEC.a)) / (FieldNum(2)*y_p)
+        if(point2 is PointID()):
+            return self
         else:
-            try:
-                s = (y_p - y_q) / (x_p - x_q)
-            except ZeroDivisionError:
-                return Point('-', '-')
+            if(x_p == x_q and y_p == y_q):
+                s = (FieldNum(3)*(x_p**2) + FieldNum(curEC.a)) / (FieldNum(2)*y_p)
+            else:
+                try:
+                    s = (y_p - y_q) / (x_p - x_q)
+                except:
+                    return PointID()
 
-        x_r = s**2 - x_p - x_q
-        y_r = s*(x_p - x_r) - y_p
-        
-        return Point(x_r.val, y_r.val)
+            x_r = s**2 - x_p - x_q
+            y_r = s*(x_p - x_r) - y_p
+            
+            return Point(x_r.val, y_r.val)
     
     def __mul__(self, a):
         P = self
@@ -53,17 +56,21 @@ class Point():
             P = self.__add__(P)
         return P
 
-        
-"""
-class Point_ID(Point):
-
+class PointID(Point, object):
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(PointID, cls).__new__(cls)
+        return cls.instance
+    
     def __init__(self):
         self.x = '-'
         self.y = '-'
-
+    
     def __str__(self):
         return "(-, -)"
 
-    def __add__(self, point2):
-        return point2
-"""
+    def __add__(self, other):
+        if other is PointID():
+            return PointID()
+        else:
+            return other
