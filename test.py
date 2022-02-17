@@ -1,12 +1,12 @@
 from point import *
-from ec import curEC
-from modarith import FieldNum
+from ec import *
+from modarith import *
 import unittest
 
 class Test(unittest.TestCase):
 
     def test_addition_in_field(self):
-        p = FieldNum.P
+        p = Field.m
         for i in range(0, p):
             for j in range(0, p):
                 a = FieldNum(i)
@@ -14,7 +14,7 @@ class Test(unittest.TestCase):
                 self.assertEqual(int(a+b), (a.val + b.val) % p)
 
     def test_subtraction_in_field(self):
-        p = FieldNum.P
+        p = Field.m
         for i in range(0, p):
             for j in range(0, p):
                 a = FieldNum(i)
@@ -22,7 +22,7 @@ class Test(unittest.TestCase):
                 self.assertEqual(int(a-b), (a.val - b.val) % p)
 
     def test_multiplication_in_field(self):
-        p = FieldNum.P
+        p = Field.m
         for i in range(0, p):
             for j in range(0, p):
                 a = FieldNum(i)
@@ -30,7 +30,7 @@ class Test(unittest.TestCase):
                 self.assertEqual(int(a*b), (a.val * b.val) % p)
 
     def test_inverse_in_field(self):
-        p = FieldNum.P
+        p = Field.m
         inverses = [1, 4, 5, 2, 3, 6]
         for i in range(1, p):
             a = FieldNum(i)
@@ -46,11 +46,11 @@ class Test(unittest.TestCase):
         a = Point(0, 3)
         c = a + a
         self.assertEqual(str(c), "(2, 3)")
-        FieldNum.P = 17
+        Field.m = 17
         b = Point(14, 0)
         d = b + b
         self.assertEqual(str(d), "(-, -)")
-        FieldNum.P = 7
+        Field.m = 7
     
     def test_point_addition(self):
         a = Point(2, 4)
@@ -95,8 +95,8 @@ class Test(unittest.TestCase):
     
 
 if __name__ == '__main__':
-    FieldNum.P = 7
-    (curEC.A, curEC.B) = (3, 2)
+    Field.m = 7
+    curEC = EC(3, 2)
     unittest.main()
 
     

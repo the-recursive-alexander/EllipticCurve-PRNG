@@ -1,10 +1,18 @@
 
+class Field(object):
+    m = 7 # indicates the size of our finite field of integers MUST BE PRIME
+
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Field, cls).__new__(cls)
+        return cls.instance
+    
+    
+
 class FieldNum():
 
-    P = 7 # indicates the size of our finite field of integers MUST BE PRIME default is 7
-
     def __init__(self, val):
-        self.val = val % FieldNum.P
+        self.val = val % Field.m
 
     def __str__(self):
         return str(self.val)
@@ -17,7 +25,7 @@ class FieldNum():
 
     # a+b
     def __add__(self, fieldNum):
-        p = FieldNum.P
+        p = Field.m
         a = self.val
         b = fieldNum.val
 
@@ -25,13 +33,13 @@ class FieldNum():
 
     # a-b
     def __sub__(self, fieldNum):
-        p = FieldNum.P
+        p = Field.m
         a = self.val
         b = fieldNum.val
         return FieldNum((a - b) % p)
     # a*b
     def __mul__(self, fieldNum):
-        p = FieldNum.P
+        p = Field.m
         a = self.val
         b = fieldNum.val
 
@@ -45,7 +53,7 @@ class FieldNum():
     # ~a (multiplicative inverse)
     # TODO: make more efficient
     def __invert__(self):
-        p = FieldNum.P
+        p = Field.m
         a = self.val
         for i in range(0, p):
             if((a * i) % p == 1):
@@ -53,7 +61,7 @@ class FieldNum():
         return -1
     
     def __truediv__(self, fieldNum):
-        p = FieldNum.P
+        p = Field.m
         a = self.val
         b = fieldNum.val
         for i in range(0, p):
@@ -63,7 +71,7 @@ class FieldNum():
 
     # a**b
     def __pow__(self, b):
-        p = FieldNum.P
+        p = Field.m
         a = self.val
        
         return FieldNum((a ** b) % p)
@@ -72,7 +80,7 @@ class FieldNum():
     # returns list of FieldNums
     # TODO: create test suite
     def sqrt(self):
-        p = FieldNum.P
+        p = Field.m
         a = self.val
         ans_list = []
         for i in range(0, p):

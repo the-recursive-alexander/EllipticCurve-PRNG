@@ -1,4 +1,4 @@
-from modarith import FieldNum
+from modarith import *
 import point
 
 # equation of the form: y^2 = x^3 + ax + b
@@ -25,7 +25,7 @@ class EC(object):
         a = FieldNum(self.a)
         b = FieldNum(self.b)
 
-        p = FieldNum.P
+        p = Field.m
         point_list = [point.PointID()]
         for x in range(0, p):
             y = (FieldNum(x**3)+a*FieldNum(x)+b).sqrt()
@@ -38,8 +38,7 @@ class EC(object):
     def findPoint(self, n):
         a = FieldNum(self.a)
         b = FieldNum(self.b)
-
-        p = FieldNum.P
+        
         y = '-'
         for x in range(0, n):
             y_list = (FieldNum(x**3)+a*FieldNum(x)+b).sqrt()

@@ -1,12 +1,8 @@
-from tkinter import dnd
 from ec import curEC
-from modarith import FieldNum
-
-myEC = curEC
-FieldNum.P = 29
+from modarith import Field
 
 def generateGroupTable():
-    pointList = myEC.points()
+    pointList = curEC.points()
     length = len(pointList)
     print("      ", end="")
     for p in pointList:
@@ -22,6 +18,7 @@ def generateGroupTable():
         print()
 
 def main():
+    Field.m = 7
     generateGroupTable()
     
 

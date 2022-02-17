@@ -13,7 +13,7 @@ def findFirstPoint(i):
     
 def main():
     print("Setting prime...")
-    FieldNum.P = 491
+    Field.m = 491
     print("Done.")
     print("Initializing Parameters...")
     n = 10
