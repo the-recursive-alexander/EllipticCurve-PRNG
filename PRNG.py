@@ -6,6 +6,8 @@ def kPModule(k, P):
     return P*k
 
 def newK(P, n):
+    if(P.x == '-'):
+        return 0
     return (P.x + FieldNum(n)).val
 
 def findFirstPoint(i):
@@ -13,14 +15,15 @@ def findFirstPoint(i):
     
 def main():
     print("Setting prime...")
-    Field.m = 491
+    Field.m = 2927
     print("Done.")
     print("Initializing Parameters...")
-    n = 10
-    seed = 79
+    n = int(input("Print how many numbers?: "))
+    seed = 1453
     print("Done.")
     print("Determining a start point, P...")
-    P = findFirstPoint(8)
+    P = Point(1, 16157) #curEC.points()[3]
+    print("Point is {}".format(str(P)))
     print("Done.")
     print("Setting Elliptic Curve...")
     ec.curEC = EC(0, 7)
