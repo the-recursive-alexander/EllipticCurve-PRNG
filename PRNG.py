@@ -2,12 +2,14 @@ from point import *
 from ec import *
 from modarith import *
 
-def kPModule(k, P):
-    return P*k
+def kPModule(k, P, n):
+    retPoint = P*k
+    if(retPoint.x == '-'):
+        k1 = (P.y + FieldNum(n)).val
+        retPoint = P*k1
+    return retPoint
 
 def newK(P, n):
-    if(P.x == '-'):
-        return 0
     return (P.x + FieldNum(n)).val
 
 def findFirstPoint(i):
@@ -31,10 +33,13 @@ def main():
 
     print("Printing Random Numbers...")
     k = seed
+    f = open("output.txt", 'w')
     for i in range(0,n):
-        P = kPModule(k, P)
-        print(P.x)
-        k = newK(P, i) 
+        P = kPModule(k, P, i)
+        f.write(str(bin(P.x.val))[2:])
+        f.write("\n")
+        k = newK(P, i)
+    f.close()
     print("Done.")
 
 if __name__ == "__main__":
