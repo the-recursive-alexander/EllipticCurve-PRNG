@@ -1,3 +1,13 @@
 			  LONGEST RUNS OF ONES TEST
 		---------------------------------------------
-		   n=10 is too short
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 131
+		(b) M (Substring Length) = 8
+		(c) Chi^2                = 4.461499
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		  <=1     2     3    >=4   P-value  Assignment
+		  22  45  31   33 SUCCESS		p_value = 0.215750
+

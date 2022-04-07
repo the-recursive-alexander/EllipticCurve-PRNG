@@ -1,3 +1,9 @@
+# need to import sys to add the lib folder to the path
+# so that the modules imported below can be accessed
+import sys
+sys.path.insert(0, '../lib')
+#########################################################
+
 from point import *
 from ec import *
 from modarith import *

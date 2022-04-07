@@ -1,3 +1,8 @@
+# need to import sys so that our imports below can find the modules in the lib folder
+import sys
+sys.path.insert(0, './lib')
+#################################################
+
 from point import *
 from ec import *
 from modarith import *
@@ -33,11 +38,11 @@ def main():
 
     print("Printing Random Numbers...")
     k = seed
-    f = open("output.txt", 'w')
+    f = open("./output/output.data", 'w')
     for i in range(0,n):
         P = kPModule(k, P, i)
         f.write(str(bin(P.x.val))[2:])
-        f.write("\n")
+        print(P.x)
         k = newK(P, i)
     f.close()
     print("Done.")
