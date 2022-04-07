@@ -18,7 +18,7 @@ def generateGroupTable():
         print()
 
 def main():
-    Field.m = 7
+    Field.m = 2927
     generateGroupTable()
     
 

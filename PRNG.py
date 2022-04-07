@@ -24,7 +24,7 @@ def main():
     seed = 1453
     print("Done.")
     print("Determining a start point, P...")
-    P = Point(1, 16157) #curEC.points()[3]
+    P = Point(114, 2255) #(1, 1522) #(114, 2255)
     print("Point is {}".format(str(P)))
     print("Done.")
     print("Setting Elliptic Curve...")
