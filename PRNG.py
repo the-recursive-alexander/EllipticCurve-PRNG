@@ -1,4 +1,5 @@
-# need to import sys so that our imports below can find the modules in the lib folder
+# need to import sys so that our imports below
+# can find the modules in the lib folder
 import sys
 sys.path.insert(0, './lib')
 #################################################
@@ -52,7 +53,8 @@ def main():
         f.write(str(bin(P.x.val))[2:])
         #print(P, end = '')
         #print("=> ", end = '')
-        print(P.x)
+        if(i % 100 == 0):
+            print("{}% complete".format(100*i/n))
         k = newK(P, i)
     f.close()
     print("Done.")
