@@ -9,9 +9,11 @@ from modarith import *
 
 def kPModule(k, P, n):
     retPoint = P*k
-    if(retPoint.x == '-'):
-        k1 = (P.y + FieldNum(n)).val
+    i = 0
+    while(retPoint.x == '-'):
+        k1 = (P.y + FieldNum(n + i)).val
         retPoint = P*k1
+        i = i + 1
     return retPoint
 
 def newK(P, n):
@@ -40,8 +42,16 @@ def main():
     k = seed
     f = open("./output/output.data", 'w')
     for i in range(0,n):
+        #print("P: ", end = '')
+        #print(P)
+        #print("k: ", end = '')
+        #print(k)
+        #print("n: ", end = '')
+        #print(i)
         P = kPModule(k, P, i)
         f.write(str(bin(P.x.val))[2:])
+        #print(P, end = '')
+        #print("=> ", end = '')
         print(P.x)
         k = newK(P, i)
     f.close()
