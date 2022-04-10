@@ -25,7 +25,7 @@ def findFirstPoint(i):
     
 def main():
     print("Setting prime...")
-    Field.m = 2927
+    Field.m = 9761671
     print("Done.")
     print("Initializing Parameters...")
     n = int(input("Print how many numbers?: "))
@@ -43,18 +43,11 @@ def main():
     k = seed
     f = open("./output/output.data", 'w')
     for i in range(0,n):
-        #print("P: ", end = '')
-        #print(P)
-        #print("k: ", end = '')
-        #print(k)
-        #print("n: ", end = '')
-        #print(i)
         P = kPModule(k, P, i)
-        f.write(str(bin(P.x.val))[2:])
-        #print(P, end = '')
-        #print("=> ", end = '')
-        if(i % 100 == 0):
-            print("{}% complete".format(100*i/n))
+        #f.write(str(bin(P.x.val))[2:])
+        print(P.x)
+        #if(i % 100 == 0):
+        #    print("{}% complete".format(100*i/n))
         k = newK(P, i)
     f.close()
     print("Done.")
