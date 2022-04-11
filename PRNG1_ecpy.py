@@ -15,7 +15,7 @@ def kPModule(k, P):
 def newK(P, n):
     return (P.x + n) % P.curve.field
 
-f = open("./output/output.data", 'w')
+f = open("./output/output1.data", 'w')
 n = int(input("Print how many?: "))
 for i in tqdm(range(n)):
     P = kPModule(k, P)
