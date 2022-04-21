@@ -28,7 +28,7 @@ class EC(object):
 
         p = Field.m
         point_list = [point.PointID()]
-        for x in tqdm(range(0, p)):
+        for x in range(0, p):
             y = (FieldNum(x**3)+a*FieldNum(x)+b).sqrt()
             if y:
                 for i in range(0, len(y)):
