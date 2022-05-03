@@ -33,18 +33,13 @@ k = 0x1237567df84903abf8388c7368fbe710adc7832229fbea74dcedf00493822283
 domain = {'name': "P-163", 'size': 163, 'a': 3}
 
 cv = Curve.get_curve('secp256k1')
-P  = Point(0xb63754f6af87855c24032a1f3e1ed4f272974f24dae1b5441a5e479ef17c1535, 0x6d621e62732f0b16b4f996691f764814f6e5535b0f469eff7bb5098e58fd63c6, cv)
-"""
-Point(0x65d5b8bf9ab1801c9f168d4815994ad35f1dcb6ae6c7a1a303966b677b813b00,
+P  = Point(0x65d5b8bf9ab1801c9f168d4815994ad35f1dcb6ae6c7a1a303966b677b813b00,
            0xe6b865e529b8ecbf71cf966e900477d49ced5846d7662dd2dd11ccd55c0aff7f,
            cv)
-"""
-Q = Point(0x78868d1adada46e7d962887b5c04cc24295f0d9e901fc0454d657ac573446b49, 0x42e8e946abbb563a4e67805b3fc541a034385bdf58123f47731195286063d73c, cv)
-"""
-Point(0x1cb2dc4d59b6714c9d96e3a5603b012f2d6df7e71ed10b77e5ebb11cf779b80d,
+
+Q = Point(0x1cb2dc4d59b6714c9d96e3a5603b012f2d6df7e71ed10b77e5ebb11cf779b80d,
           0x20684258422ea9b73941ae0c224a578487de64cc17c94de29e62dffef2311381,
           cv)
-"""
 
 f = open("./output/output2.data", 'w')
 n = int(input("Print how many?: "))
